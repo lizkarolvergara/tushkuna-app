@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "nombre": "Seco de Cabrito",
+    "precio": 32,
+    "categoria": "Platos",
+    "img": "seco.png"
+  },
+  {
+    "id": 2,
+    "nombre": "Arroz con Pollo",
+    "precio": 30,
+    "categoria": "Platos",
+    "img": "arrozconpollo.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Ceviche",
+    "precio": 28,
+    "categoria": "Platos",
+    "img": "ceviche.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Chicharrón de Pescado",
+    "precio": 27,
+    "categoria": "Platos",
+    "img": "chicharronpescado.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Toyo apanado",
+    "precio": 22,
+    "categoria": "Platos",
+    "img": "toyo.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Caldo de Gallina",
+    "precio": 24,
+    "categoria": "Platos",
+    "img": "caldo.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "Chicha Morada",
+    "precio": 6,
+    "categoria": "Bebidas",
+    "img": "chichamorada.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Limonada",
+    "precio": 6,
+    "categoria": "Bebidas",
+    "img": "limonada.jpg"
+  }
+]

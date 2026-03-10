@@ -1,50 +1,127 @@
-# Welcome to your Expo app 👋
+# Tushkuna App 🍽️📱
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Tushkuna App es una aplicación móvil desarrollada como proyecto del curso **Desarrollo de Aplicaciones Móviles 2**.
 
-## Get started
+El objetivo de la aplicación es apoyar la gestión operativa de un restaurante, permitiendo a los mozos registrar pedidos, visualizar el menú y gestionar información básica desde un dispositivo móvil.
 
-1. Install dependencies
+El proyecto está desarrollado utilizando **React Native con Expo** e integra **Firebase** para autenticación de usuarios y gestión de datos en tiempo real.
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## Integrantes
 
-   ```bash
-   npx expo start
-   ```
+- Liz Vergara
+- Santiago Trebejo
 
-In the output, you'll find options to open the app in a
+Curso: **Desarrollo de Aplicaciones Móviles 2**  
+Institución: **IDAT**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Tecnologías utilizadas
 
-## Get a fresh project
+- React Native
+- Expo
+- TypeScript
+- Expo Router (navegación)
+- Firebase Authentication
+- Firebase Firestore
+- AsyncStorage
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
+## Dependencias principales
+
+Las principales dependencias instaladas en el proyecto son:
+
+```
+firebase
+expo-router
+@react-native-async-storage/async-storage
+react-native-safe-area-context
+expo-status-bar
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Para instalar todas las dependencias del proyecto:
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## Ejecutar el proyecto
 
-## Join the community
+### 1. Instalar dependencias
 
-Join our community of developers creating universal apps.
+```bash
+npm install
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 2. Iniciar el servidor de desarrollo
+
+```bash
+npx expo start
+```
+
+### 3. Ejecutar la aplicación desde
+
+- Expo Go (escaneando el QR)
+- Emulador Android
+- Simulador iOS
+- Web (modo desarrollo)
+
+---
+
+## Estructura del proyecto
+
+```
+app/
+ ├── (auth)
+ │    ├── login.tsx
+ │    └── register.tsx
+ │
+ ├── (tabs)
+ │    ├── index.tsx
+ │    ├── mozo/
+ │    │   ├── index.tsx
+ │    │   ├── pedido/
+ │    │   │    └── [mesa].tsx
+ │    │   └── ver/
+ │    │        └── [mesa].tsx
+ │    └── _layout.tsx
+ │
+config/
+ └── firebaseConfig.ts
+
+data/
+ └── menu.json
+```
+
+---
+
+## Funcionalidades implementadas
+
+- Autenticación de usuarios mediante Firebase
+- Visualización del menú de productos
+- Registro de pedidos por mesa
+- Consulta de pedidos registrados
+- Navegación entre pantallas mediante Expo Router
+- Sincronización de datos con Firebase
+
+---
+
+## Objetivo académico
+
+El proyecto busca aplicar los conocimientos del curso **Desarrollo de Aplicaciones Móviles 2**, tales como:
+
+- Desarrollo de interfaces móviles con React Native
+- Implementación de navegación entre pantallas
+- Integración con Firebase para autenticación y base de datos
+- Gestión de datos en tiempo real en aplicaciones móviles
+
+---
+
+## Autoría
+
+Proyecto desarrollado con fines educativos.
