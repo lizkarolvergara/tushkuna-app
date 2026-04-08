@@ -85,6 +85,9 @@ app/
  │    ├── index.tsx
  │    ├── mozo/
  │    │   ├── index.tsx
+ │    │   ├── chat/
+ │    │   │    ├── [mesa].tsx
+ │    │   │    └── index.tsx
  │    │   ├── pedido/
  │    │   │    └── [mesa].tsx
  │    │   └── ver/
@@ -108,6 +111,7 @@ data/
 - Consulta de pedidos registrados
 - Navegación entre pantallas mediante Expo Router
 - Sincronización de datos con Firebase
+- Chat en tiempo real por mesa entre mozo, cocina y admin
 
 ---
 
@@ -119,6 +123,7 @@ El proyecto busca aplicar los conocimientos del curso **Desarrollo de Aplicacion
 - Implementación de navegación entre pantallas
 - Integración con Firebase para autenticación y base de datos
 - Gestión de datos en tiempo real en aplicaciones móviles
+- Implementación de chat en tiempo real
 
 ---
 

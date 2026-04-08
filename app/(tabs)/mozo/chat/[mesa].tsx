@@ -1,10 +1,10 @@
 import {
-    FlatList,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -12,14 +12,14 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useRef, useState } from "react";
 
 import {
-    addDoc,
-    collection,
-    doc,
-    onSnapshot,
-    orderBy,
-    query,
-    serverTimestamp,
-    updateDoc,
+  addDoc,
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "../../../../config/firebaseConfig";
 
@@ -38,6 +38,7 @@ export default function ChatMesa() {
   const router = useRouter();
 
   const [mensajes, setMensajes] = useState<Mensaje[]>([]);
+  const flatListRef = useRef<FlatList>(null);
   const [texto, setTexto] = useState("");
   const [usuario, setUsuario] = useState("mozo");
   const [rol, setRol] = useState("");
@@ -80,6 +81,10 @@ export default function ChatMesa() {
       })) as Mensaje[];
 
       setMensajes(data);
+      setTimeout(
+        () => flatListRef.current?.scrollToEnd({ animated: true }),
+        100,
+      );
     });
 
     return () => unsubscribe();
@@ -144,6 +149,7 @@ export default function ChatMesa() {
 
       <View style={styles.container}>
         <FlatList
+          ref={flatListRef}
           data={mensajes}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
@@ -180,6 +186,11 @@ export default function ChatMesa() {
               </View>
             );
           }}
+          ListEmptyComponent={
+            <Text style={{ textAlign: "center", color: "#999", marginTop: 40 }}>
+              No hay mensajes aún
+            </Text>
+          }
         />
 
         <View style={styles.inputContainer}>
