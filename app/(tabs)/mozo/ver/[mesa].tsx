@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { db } from "../../../../config/firebaseConfig";
 
 import {
-    Alert,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Alert,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 import { StatusBar } from "expo-status-bar";
@@ -91,11 +91,12 @@ export default function PedidoListo() {
       {/* HEADER */}
 
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.replace("/mozo")}>
+          <Text style={styles.back}>←</Text>
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>Mesa {mesaId}</Text>
 
-        <TouchableOpacity onPress={() => router.replace("/mozo")}>
-          <Text style={{ color: "white" }}>Volver</Text>
-        </TouchableOpacity>
+        <View style={{ width: 24 }} />
       </View>
 
       <ScrollView style={styles.container}>
@@ -234,5 +235,23 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "white",
     fontWeight: "bold",
+  },
+
+  back: {
+    color: "white",
+    fontSize: 20,
+  },
+
+  fab: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+    backgroundColor: "#a26433",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 5,
   },
 });

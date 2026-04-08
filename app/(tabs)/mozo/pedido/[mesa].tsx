@@ -286,6 +286,24 @@ export default function PedidoNuevo() {
 
     setShowModal(false);
     setPedidoEnviado(true);
+
+    const chatRef = collection(db, "chats", `mesa_${mesaId}`, "mensajes");
+
+    let resumen = "Pedido enviado a cocina\n\n";
+
+    pedido.items.forEach((it: any) => {
+      resumen += `${it.producto} x ${it.cantidad} → S/ ${it.subtotal}\n`;
+    });
+
+    resumen += `\nTotal: S/ ${pedido.total}`;
+
+    await addDoc(chatRef, {
+      texto: resumen,
+      usuario: nombreMozo,
+      rol: "mozo",
+      tipo: "sistema",
+      timestamp: serverTimestamp(),
+    });
   };
 
   if (!pedido) {
@@ -303,11 +321,12 @@ export default function PedidoNuevo() {
       <StatusBar style="light" />
 
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => router.replace("/mozo")}>
+          <Text style={styles.back}>←</Text>
+        </TouchableOpacity>
         <Text style={styles.headerTitle}>Mesa {mesaId}</Text>
 
-        <TouchableOpacity onPress={() => router.replace("/mozo")}>
-          <Text style={{ color: "white" }}>Volver</Text>
-        </TouchableOpacity>
+        <View style={{ width: 24 }} />
       </View>
 
       <ScrollView style={styles.container}>
@@ -441,6 +460,12 @@ export default function PedidoNuevo() {
           </View>
         </View>
       </Modal>
+      <TouchableOpacity
+        style={styles.fab}
+        onPress={() => router.push("/mozo/chat")}
+      >
+        <Text style={{ color: "white", fontSize: 20 }}>💬</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -614,5 +639,23 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 6,
     alignItems: "center",
+  },
+
+  back: {
+    color: "white",
+    fontSize: 20,
+  },
+
+  fab: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+    backgroundColor: "#a26433",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 5,
   },
 });

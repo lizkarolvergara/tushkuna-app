@@ -1,9 +1,9 @@
 import {
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -17,7 +17,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { auth, db } from "../../../config/firebaseConfig";
 
 export default function MozoDashboard() {
-  const [mesas, setMesas] = useState([]);
+  const [mesas, setMesas] = useState<any[]>([]);
   const [nombreMozo, setNombreMozo] = useState("Mozo");
 
   const router = useRouter();
@@ -106,12 +106,34 @@ export default function MozoDashboard() {
     );
   };
 
+  // 🔴 DETECTAR SI HAY MENSAJES NO LEÍDOS
+  const [rol, setRol] = useState("");
+
+  useEffect(() => {
+    const loadUser = async () => {
+      const r = await AsyncStorage.getItem("usuarioRol");
+      if (r) setRol(r);
+    };
+
+    loadUser();
+  }, []);
+
+  const hayNoLeidos =
+    rol &&
+    mesas.some((m) => {
+      const leido = m[`leido_${rol}`];
+
+      if (!m.ultimoMensaje) return false;
+      if (!leido) return true;
+
+      return m.ultimoMensaje.toMillis() > leido.toMillis();
+    });
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#cd8350" }}>
       <StatusBar style="light" backgroundColor="#cd8350" />
 
       {/* HEADER */}
-
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Dashboard</Text>
 
@@ -133,6 +155,16 @@ export default function MozoDashboard() {
           contentContainerStyle={{ paddingBottom: 40 }}
         />
       </View>
+
+      {/* FAB CHAT */}
+      <TouchableOpacity
+        style={styles.fab}
+        onPress={() => router.push("/mozo/chat")}
+      >
+        <Text style={{ color: "white", fontSize: 20 }}>💬</Text>
+
+        {hayNoLeidos && <View style={styles.badge} />}
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -240,5 +272,31 @@ const styles = StyleSheet.create({
 
   btnText: {
     color: "white",
+  },
+
+  fab: {
+    position: "absolute",
+    bottom: 20,
+    right: 20,
+    backgroundColor: "#a26433",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    elevation: 5,
+  },
+
+  // 🔴 BADGE ROJO
+  badge: {
+    position: "absolute",
+    top: 1,
+    right: 4,
+    width: 15,
+    height: 15,
+    borderRadius: 7.5,
+    borderColor: "rgb(87, 85, 85)",
+    borderWidth: 1,
+    backgroundColor: "red",
   },
 });
