@@ -1,6 +1,5 @@
 # Tushkuna App 🍽️📱
 
-Tushkuna App es una aplicación móvil desarrollada como proyecto del curso **Desarrollo de Aplicaciones Móviles 2**.
 
 El objetivo de la aplicación es apoyar la gestión operativa de un restaurante, permitiendo a los mozos registrar pedidos, visualizar el menú y gestionar información básica desde un dispositivo móvil.
 
